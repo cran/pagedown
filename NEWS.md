@@ -1,3 +1,17 @@
+# CHANGES IN pagedown VERSION 0.7
+
+## NEW FEATURES
+
+- Added support for pagebreaks: in output formats which use **paged.js**, a pagebreak can be forced using the LaTeX commands `\newpage` and `\pagebreak` or using the CSS classes `page-break-before` and `page-break-after`.
+
+- **reveal.js** presentations can be printed to PDF using `chrome_print()`. 
+
+- Using RStudio, any R Markdown HTML output formats can be directly printed to PDF by adding the line `"knit: pagedown::chrome_print"` to the YAML header: this line modifies the behavior of the "Knit" button of RStudio and produce both HTML and PDF documents.
+
+## BUG FIXES
+
+- In `chrome_print()` with `async = FALSE`, the Chrome processus and the local web server are properly closed when the function exits. This regression was introduced in **pagedown** 0.6.
+
 # CHANGES IN pagedown VERSION 0.6
 
 ## MINOR CHANGES
