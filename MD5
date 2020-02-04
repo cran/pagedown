@@ -1,9 +1,9 @@
-b95f32d799463e4d23355e423d6fdde2 *DESCRIPTION
+72df1fd8e1f069c13da41afb0b1c66e5 *DESCRIPTION
 753beaf1330cfb240ad893cf01b05690 *LICENSE
 99cbb6bdab5aab3c56307ea08b9c665e *NAMESPACE
-923ccc2e9fc2c280189f6cdd4347ae0c *NEWS.md
+11be8c80cb86075d3bc6596309ef96d1 *NEWS.md
 ccc40636a131891ddd8b77466152fcba *R/card.R
-e403a291ff69c8969997f2df91cc6bd0 *R/chrome.R
+dedb126492a66b0cb49d972d0e28ee38 *R/chrome.R
 68a48c79058ed3462f0a050a514008b9 *R/paged.R
 2a61de6b3b2fdf02fa0be571c5251000 *R/poster.R
 9483d80e39986d4ea1452a83f9618c6f *R/resume.R
@@ -21,7 +21,7 @@ a146594183dbaa186dd784ceca543c3c *inst/resources/css/jss-page.css
 21fdae8adce90fa518192f25d70301d9 *inst/resources/css/letter.css
 d5702a408302404d283aa5db6943195c *inst/resources/css/poster-jacobs.css
 3a7b21c8f6f3134a37a52e1d52b1ab8d *inst/resources/css/poster-relaxed.css
-912a2c2be8a08889919a1af35172b8d2 *inst/resources/css/resume.css
+3ddf9c95b5102e752178dfda348c7e59 *inst/resources/css/resume.css
 848043586beb8b7b5fc749a0228df6ce *inst/resources/css/thesis.css
 a8b810b9bfc83553c85aa321f46eb09d *inst/resources/html/card.html
 2d13f8c09c33e0998f7765f1ed1f6cce *inst/resources/html/jss_paged.html
@@ -67,7 +67,7 @@ e36bc5c16c7a476b84df17d8d921a196 *man/html_resume.Rd
 d7306c62d04f9ad04e965a788513343f *man/thesis_paged.Rd
 1902c0a339857ac0508603e27b44b912 *tests/test-cran.R
 8141a49c00c3636b4b67245878892e5a *tests/test-cran/test-utils.R
-ad3f593cfbdb4343dcdcd70ea3ce18e3 *tests/test-travis.R
+09c2ae3c4c26464d254404b877cdfd7d *tests/test-travis.R
 75c70bedf6316da623b679e52eed3c58 *tests/test-travis/test-chrome.R
 961f114b56f0330eece34d86eb2277b5 *tests/test-travis/test-chrome.Rmd
 d253e186deba1facf2855ac54b92cae0 *tests/test-travis/test-features.R

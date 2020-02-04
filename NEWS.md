@@ -1,3 +1,11 @@
+# CHANGES IN pagedown VERSION 0.8
+
+## BUG FIXES
+
+- In `chrome_print()`, fixed some connection problems to headless Chrome: in some situations, the R session tries to connect to headless Chrome before a target is created. Now, `chrome_print()` controls the target creation by connecting to the `Browser` endpoint (thanks, @gershomtripp, #158).  
+
+- In `html_resume()` template, vertical space is removed when details are omitted (thanks, @mrajeev08, #161).
+
 # CHANGES IN pagedown VERSION 0.7
 
 ## NEW FEATURES
@@ -10,7 +18,7 @@
 
 ## BUG FIXES
 
-- In `chrome_print()` with `async = FALSE`, the Chrome processus and the local web server are properly closed when the function exits. This regression was introduced in **pagedown** 0.6.
+- In `chrome_print()` with `async = FALSE`, the Chrome processes and the local web server are properly closed when the function exits. This regression was introduced in **pagedown** 0.6.
 
 # CHANGES IN pagedown VERSION 0.6
 
