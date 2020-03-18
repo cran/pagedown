@@ -1,3 +1,9 @@
+# CHANGES IN pagedown VERSION 0.9
+
+## BUG FIXES
+
+- In `html_resume()` template, an icon inserted using inline HTML in a section title takes precedence over the default icon and the `data-icon` property (thanks, @Tazinho, #168).
+
 # CHANGES IN pagedown VERSION 0.8
 
 ## BUG FIXES
