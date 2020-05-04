@@ -1,7 +1,7 @@
-37bc40819ba5a1a4daf50118cd102427 *DESCRIPTION
+ba2b478d704f36145c68d8e8e0b11ca6 *DESCRIPTION
 69615511d5ab9e4701567d7fb4b5fb53 *LICENSE
 99cbb6bdab5aab3c56307ea08b9c665e *NAMESPACE
-b2f4c226aef0eea07093b5dd2cc60d1b *NEWS.md
+fb8cd7770d33a5bf12b1f6b3c65ac412 *NEWS.md
 ccc40636a131891ddd8b77466152fcba *R/card.R
 dedb126492a66b0cb49d972d0e28ee38 *R/chrome.R
 68a48c79058ed3462f0a050a514008b9 *R/paged.R
@@ -21,7 +21,7 @@ a146594183dbaa186dd784ceca543c3c *inst/resources/css/jss-page.css
 21fdae8adce90fa518192f25d70301d9 *inst/resources/css/letter.css
 d5702a408302404d283aa5db6943195c *inst/resources/css/poster-jacobs.css
 3a7b21c8f6f3134a37a52e1d52b1ab8d *inst/resources/css/poster-relaxed.css
-3ddf9c95b5102e752178dfda348c7e59 *inst/resources/css/resume.css
+264490a5270c0d106ef6c9e34149ab6e *inst/resources/css/resume.css
 848043586beb8b7b5fc749a0228df6ce *inst/resources/css/thesis.css
 a8b810b9bfc83553c85aa321f46eb09d *inst/resources/html/card.html
 2d13f8c09c33e0998f7765f1ed1f6cce *inst/resources/html/jss_paged.html

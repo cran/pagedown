@@ -1,7 +1,7 @@
 Package: pagedown
 Type: Package
 Title: Paginate the HTML Output of R Markdown with CSS for Print
-Version: 0.9
+Version: 0.10
 Authors@R: c(
   person("Yihui", "Xie", role = c("aut", "cre"), email = "xie@yihui.name", comment = c(ORCID = "0000-0003-0645-5666")),
   person("Romain", "Lesur", role = c("aut", "cph"), comment = c(ORCID = "0000-0002-0721-5595")),
@@ -31,7 +31,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
 NeedsCompilation: no
-Packaged: 2020-03-17 02:43:49 UTC; yihui
+Packaged: 2020-05-04 19:03:30 UTC; yihui
 Author: Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>),
   Romain Lesur [aut, cph] (<https://orcid.org/0000-0002-0721-5595>),
   Brent Thorne [aut] (<https://orcid.org/0000-0002-1099-3857>),
@@ -43,4 +43,4 @@ Author: Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>),
   Zulko [ctb] (poster-relaxed.css in resources/css/)
 Maintainer: Yihui Xie <xie@yihui.name>
 Repository: CRAN
-Date/Publication: 2020-03-18 07:00:03 UTC
+Date/Publication: 2020-05-04 19:40:02 UTC
