@@ -1,11 +1,12 @@
 Package: pagedown
 Type: Package
 Title: Paginate the HTML Output of R Markdown with CSS for Print
-Version: 0.10
+Version: 0.11
 Authors@R: c(
   person("Yihui", "Xie", role = c("aut", "cre"), email = "xie@yihui.name", comment = c(ORCID = "0000-0003-0645-5666")),
   person("Romain", "Lesur", role = c("aut", "cph"), comment = c(ORCID = "0000-0002-0721-5595")),
   person("Brent", "Thorne", role = "aut", comment = c(ORCID = "0000-0002-1099-3857")),
+  person("Xianying", "Tan", role = "aut", comment = c(ORCID = "0000-0002-6072-3521")),
   person("Christophe", "Dervieux", role = c("ctb"), comment = c(ORCID = "0000-0003-4474-2498")),
   person("Atsushi", "Yasumoto", role = c("ctb"), comment = c(ORCID = "0000-0002-8335-495X")),
   person(family = "RStudio, PBC", role = "cph"),
@@ -20,7 +21,7 @@ Description: Use the paged media properties in CSS and the JavaScript
   running headers, etc. Applications of this package include books, letters,
   reports, papers, business cards, resumes, and posters.
 Imports: rmarkdown (>= 1.16), bookdown (>= 0.8), htmltools, jsonlite,
-        later (>= 1.0.0), processx, servr (>= 0.13), httpuv, xfun,
+        later (>= 1.0.0), processx, servr (>= 0.18), httpuv, xfun,
         websocket
 Suggests: promises, testit, xaringan, pdftools, revealjs
 License: MIT + file LICENSE
@@ -29,12 +30,13 @@ BugReports: https://github.com/rstudio/pagedown/issues
 SystemRequirements: Pandoc (>= 2.2.3)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-05-04 19:03:30 UTC; yihui
+Packaged: 2020-09-09 13:46:48 UTC; yihui
 Author: Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>),
   Romain Lesur [aut, cph] (<https://orcid.org/0000-0002-0721-5595>),
   Brent Thorne [aut] (<https://orcid.org/0000-0002-1099-3857>),
+  Xianying Tan [aut] (<https://orcid.org/0000-0002-6072-3521>),
   Christophe Dervieux [ctb] (<https://orcid.org/0000-0003-4474-2498>),
   Atsushi Yasumoto [ctb] (<https://orcid.org/0000-0002-8335-495X>),
   RStudio, PBC [cph],
@@ -43,4 +45,4 @@ Author: Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>),
   Zulko [ctb] (poster-relaxed.css in resources/css/)
 Maintainer: Yihui Xie <xie@yihui.name>
 Repository: CRAN
-Date/Publication: 2020-05-04 19:40:02 UTC
+Date/Publication: 2020-09-09 14:50:02 UTC
