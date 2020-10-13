@@ -1,9 +1,9 @@
-4315b32eeb9c4ae2a4925043f7cf4392 *DESCRIPTION
+475d9f4ce15a43198e341fa221908cd1 *DESCRIPTION
 69615511d5ab9e4701567d7fb4b5fb53 *LICENSE
 99cbb6bdab5aab3c56307ea08b9c665e *NAMESPACE
-5cdeff601c805dfac8de930ef92e2381 *NEWS.md
+5e70c7954996b8cc116581093e73fb90 *NEWS.md
 ccc40636a131891ddd8b77466152fcba *R/card.R
-e2061aa56a0ae33471755f6a79b67d66 *R/chrome.R
+3d1acc9e9f4b1a730d568806a14a3b2e *R/chrome.R
 68a48c79058ed3462f0a050a514008b9 *R/paged.R
 2a61de6b3b2fdf02fa0be571c5251000 *R/poster.R
 9483d80e39986d4ea1452a83f9618c6f *R/resume.R
@@ -57,7 +57,7 @@ c57d82f5338b74584b95e7654ba69dcd *inst/rmarkdown/templates/poster-relaxed/templa
 9f4321d87e8b9d610aeb94fe55d22290 *inst/rmarkdown/templates/thesis-paged/template.yaml
 0f8bf6ec230a3dadc85f5a58ecc192c5 *man/book_crc.Rd
 00d60e3b18b623c2e6c0492f415e528a *man/business_card.Rd
-c20227f6be2b899c8a161dc700a83d41 *man/chrome_print.Rd
+2db5fee3125aefbca35409e0417d2c1f *man/chrome_print.Rd
 8c2317223a196c24f6ad249b1229886e *man/find_chrome.Rd
 d2164c99b75a8df9b4fee21f2cc7805e *man/html_letter.Rd
 f9964f7958fccec5dd0d765935c0d870 *man/html_paged.Rd

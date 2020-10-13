@@ -5,7 +5,13 @@
 #' prior to using this function.
 #' @param input A URL or local file path to an HTML page, or a path to a local
 #'   file that can be rendered to HTML via \code{rmarkdown::\link{render}()}
-#'   (e.g., an R Markdown document or an R script).
+#'   (e.g., an R Markdown document or an R script). If the \code{input} is to be
+#'   rendered via \code{rmarkdown::render()} and you need to pass any arguments
+#'   to it, you can pass the whole \code{render()} call to
+#'   \code{chrome_print()}, e.g., if you need to use the \code{params} argument:
+#'   \code{pagedown::chrome_print(rmarkdown::render('input.Rmd', params =
+#'   list(foo = 1:10)))}. This is because \code{render()} returns the HTML file,
+#'   which can be passed to \code{chrome_print()}.
 #' @param output The output filename. For a local web page \file{foo/bar.html},
 #'   the default PDF output is \file{foo/bar.pdf}; for a remote URL
 #'   \file{https://www.example.org/foo/bar.html}, the default output will be
@@ -43,16 +49,16 @@
 #' @param async Execute \code{chrome_print()} asynchronously? If \code{TRUE},
 #'   \code{chrome_print()} returns a \code{\link[promises]{promise}} value (the
 #'   \pkg{promises} package has to be installed in this case).
-#' @param outline If not \code{FALSE}, \code{chrome_print()} will add the bookmarks
-#'   to the generated \code{pdf} file, based on the table of contents informations.
-#'   This feature is only available for output formats based on
-#'   \code{\link{html_paged}}. It is enabled by default, as long as the Ghostscript
-#'   executable can be detected by \code{\link[tools]{find_gs_cmd}}.
+#' @param outline If not \code{FALSE}, \code{chrome_print()} will add the
+#'   bookmarks to the generated \code{pdf} file, based on the table of contents
+#'   informations. This feature is only available for output formats based on
+#'   \code{\link{html_paged}}. It is enabled by default, as long as the
+#'   Ghostscript executable can be detected by \code{\link[tools]{find_gs_cmd}}.
 #' @param encoding Not used. This argument is required by RStudio IDE.
 #' @references
 #' \url{https://developers.google.com/web/updates/2017/04/headless-chrome}
-#' @return Path of the output file (invisibly). If \code{async} is \code{TRUE}, this
-#'   is a \code{\link[promises]{promise}} value.
+#' @return Path of the output file (invisibly). If \code{async} is \code{TRUE},
+#'   this is a \code{\link[promises]{promise}} value.
 #' @export
 chrome_print = function(
   input, output = xfun::with_ext(input, format), wait = 2, browser = 'google-chrome',
@@ -355,6 +361,7 @@ is_remote_protocol_ok = function(debug_port,
     return(FALSE)
 
   required_events = list(
+    Inspector = c('targetCrashed'),
     Network = c('responseReceived'),
     Page = c('loadEventFired'),
     Runtime = c('bindingCalled')
@@ -553,6 +560,14 @@ print_page = function(
           )
           reject(token$error)
         }
+      }
+      if (method == 'Inspector.targetCrashed') {
+        token$error = paste(
+          'Chrome crashed.',
+          'This may be caused by insufficient resources.',
+          'Please, try to add "--disable-dev-shm-usage" to the `extra_args` argument.'
+        )
+        reject(token$error)
       }
       if (method == "Page.loadEventFired") {
         ws$send(to_json(list(
