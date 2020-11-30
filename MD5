@@ -1,10 +1,10 @@
-475d9f4ce15a43198e341fa221908cd1 *DESCRIPTION
+7128873fa22c25645b978ebdab65b7f5 *DESCRIPTION
 69615511d5ab9e4701567d7fb4b5fb53 *LICENSE
 99cbb6bdab5aab3c56307ea08b9c665e *NAMESPACE
-5e70c7954996b8cc116581093e73fb90 *NEWS.md
+428be2ee2e0981c2d49d13afb992023d *NEWS.md
 ccc40636a131891ddd8b77466152fcba *R/card.R
-3d1acc9e9f4b1a730d568806a14a3b2e *R/chrome.R
-68a48c79058ed3462f0a050a514008b9 *R/paged.R
+2ada741e49a9e979e2d14e1d2dae0133 *R/chrome.R
+848e15a3bc526bcc8ac386bf66b97970 *R/paged.R
 2a61de6b3b2fdf02fa0be571c5251000 *R/poster.R
 9483d80e39986d4ea1452a83f9618c6f *R/resume.R
 a005faf3e26e74c1f98e79e41187c857 *R/utils.R
@@ -32,7 +32,7 @@ f0181998e008424cd2614119403e1e68 *inst/resources/html/resume.html
 942238ae92506c2ca53e3dbb5e89b5d6 *inst/resources/html/thesis.html
 77550f8f310e1ce62477c8cd67f7d854 *inst/resources/js/chrome_print.js
 4bb5c2227a0c7afe95acbdd1f2a22f45 *inst/resources/js/config.js
-b1bfb7c385485e1e3dcf1f6545a79317 *inst/resources/js/hooks.js
+755347fafc39c4bdc5c0dab61cac8b8b *inst/resources/js/hooks.js
 f5af8d2fa905e7b1a0b7b12beb92e622 *inst/resources/js/paged-latest.js
 9814bab601042fd45e7ee1ccf537f9b5 *inst/resources/js/paged.js
 6aec4f50fadd6ba63b76f60a1c127184 *inst/resources/lua/footnotes.lua
