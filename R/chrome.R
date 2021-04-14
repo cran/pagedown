@@ -364,7 +364,7 @@ is_remote_protocol_ok = function(debug_port,
     Inspector = c('targetCrashed'),
     Network = c('responseReceived'),
     Page = c('loadEventFired'),
-    Runtime = c('bindingCalled')
+    Runtime = c('bindingCalled', 'exceptionThrown')
   )
 
   remote_commands = sapply(names(required_commands), function(domain) {
@@ -405,6 +405,8 @@ print_page = function(
   session_id = NULL
   coords = NULL
   toc_infos = NULL
+  stream_handle = NULL
+  con = NULL
 
   ws$onOpen(function(event) {
     # Create a new Target (tab)
@@ -544,8 +546,55 @@ print_page = function(
         )))
       },
       {
-        # Command #16 received (printToPDF or captureScreenshot) -> callback: save to file & close Chrome
-        writeBin(jsonlite::base64_dec(msg$result$data), output)
+        # Command #16 received (printToPDF or captureScreenshot)
+        # if data are received -> callback: save to file & close Chrome
+        # if a stream handle is received -> callback: command #17 IO.read
+        if (is.null(stream_handle <<- msg$result$stream)) {
+          writeBin(jsonlite::base64_dec(msg$result$data), output)
+          if (!xfun::isFALSE(outline) && length(toc_infos)) add_outline(output, toc_infos, verbose)
+          resolve(output)
+          token$done = TRUE
+        } else {
+          if (verbose >= 1) message('Reading PDF from a stream')
+          # open a connection
+          con <<- file(output, 'wb')
+          # read the first chunk of the stream
+          ws$send(to_json(list(
+            id = 17, sessionId = session_id, method = 'IO.read',
+            params = list(handle = stream_handle)
+          )))
+        }
+      },
+      {
+        # Command #17 received
+        # if there is another chunk to read -> callback: IO.read
+        # if EOF -> callback: command #18 IO.close
+        if (verbose >= 1) message('Stream chunk received')
+        if (isTRUE(msg$result$base64Encoded)) {
+          writeBin(jsonlite::base64_dec(msg$result$data), con)
+        } else {
+          writeBin(msg$result$data, con)
+        }
+
+        if (isTRUE(msg$result$eof)) {
+          if (verbose >= 1) message(
+            'No more stream chunk to read: closing Chrome stream'
+          )
+          close(con)
+          ws$send(to_json(list(
+            id = 18, sessionId = session_id, method = 'IO.close',
+            params = list(handle = stream_handle)
+          )))
+        } else {
+          # read another chunk
+          ws$send(to_json(list(
+            id = 17, sessionId = session_id, method = 'IO.read',
+            params = list(handle = stream_handle)
+          )))
+        }
+      },
+      {
+        # Command #18 received -> callback: add outline & close Chrome
         if (!xfun::isFALSE(outline) && length(toc_infos)) add_outline(output, toc_infos, verbose)
         resolve(output)
         token$done = TRUE
@@ -568,6 +617,14 @@ print_page = function(
           'Please, try to add "--disable-dev-shm-usage" to the `extra_args` argument.'
         )
         reject(token$error)
+      }
+      if (method == 'Runtime.exceptionThrown') {
+        warning(
+          'A runtime exception has occured in Chrome\n',
+          '  Runtime exception message:\n    ',
+          msg$params$exceptionDetails$exception$description,
+          call. = FALSE, immediate. = TRUE
+        )
       }
       if (method == "Page.loadEventFired") {
         ws$send(to_json(list(

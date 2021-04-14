@@ -94,7 +94,7 @@
 
 /* Front page or title page */
 .front-page {
-  counter-reset: page;
+  counter-reset: page 1;
 }
 
 /* Front matter*/
@@ -132,7 +132,7 @@
 .back-cover {
   break-before: verso;
 }
-.pagedjs_page:last-of-type {
+.pagedjs_page:nth-last-of-type(1) {
   background-image: var(--back-cover);
   background-position: center;
   background-size: contain;
@@ -160,7 +160,7 @@
 
 /* reset page numbering for main content */
 .main .level1:first-child h1 {
-  counter-reset: page;
+  counter-reset: page 1;
 }
 
 /* do not break captions */

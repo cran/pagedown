@@ -15,7 +15,7 @@ You may install this package from Github:
 remotes::install_github('rstudio/pagedown')
 ```
 
-This package requires a recent version of Pandoc (>= 2.2.3). If you use RStudio, you are recommended to install the [latest version](https://rstudio.com/products/rstudio/download/) (>= 1.2.1335), which has bundled Pandoc 2.x, otherwise you need to install Pandoc separately.
+This package requires a recent version of Pandoc (>= 2.2.3). If you use RStudio, you are recommended to install the [latest version](https://www.rstudio.com/products/rstudio/download/) (>= 1.2.1335), which has bundled Pandoc 2.x, otherwise you need to install Pandoc separately.
 
 Below are some existing R Markdown output formats and examples.
 
@@ -70,6 +70,10 @@ Want more poster styles? You may take a look at [Brent Thorne's **posterdown** p
 - Thomas Vroylandt's template for the French Scouts and Guides Association: https://github.com/tvroylandt/sgdf_pagedown
 
 - Beatriz Milz's CV: https://beatrizmilz.github.io/resume/resume.html
+
+- **pagedreport** by Thomas Vroylandt and David Keyes which helps using **pagedown** with some templates proposals: https://github.com/rfortherestofus/pagedreport
+
+- Jodavid Ferreira's CV (in Portuguese) : https://jodavid.github.io/cv/ (source: https://github.com/jodavid/cv)
 
 ## Authors and contributors
 

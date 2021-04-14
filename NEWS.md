@@ -1,3 +1,39 @@
+# CHANGES IN pagedown VERSION 0.14
+
+## MAJOR CHANGES
+
+- Paged.js is upgraded from version 0.1.32 to 0.1.43. This update speeds up the rendering time and fixes several bugs (see also <https://www.pagedjs.org/posts/2020-02-25-weekly/>, <https://www.pagedjs.org/posts/2020-03-03-update-pagedjs-0-1-39/>, <https://www.pagedjs.org/posts/2020-04-01-pagedjs-0-1-40/> and <https://www.pagedjs.org/posts/2020-06-22-pagedjs-0-1-42/>) (#202).
+
+## MINOR CHANGES
+
+- In `html_paged()`, links are now sanitized to avoid impossible line breaking of long URLs in a justified text (thanks, @julientaq). 
+
+- In order to be compatible with the **flextable** package, `pagedown::html_paged()` sets the value of the `ft.shadow` chunk option to `FALSE` by default (thanks, @tvroylandt and @davidgohel, #216).
+
+## NEW FEATURES
+
+- In `html_paged()`, added two new options `lot-unlisted` and `lof-unlisted`. If `lot-unlisted` (resp. `lof-unlisted`) is set to `TRUE` in the YAML options, the list of tables (resp. figures) will not be included in a table of contents (thanks, @beatrizmilz, #221).    
+
+## BUG FIXES
+
+- The multiple use of an abbreviation no longer ends up with duplicated entries in the list of abbreviations (thanks, @linogaliana, #218).
+
+- The default value of the `counter-reset` CSS property is correctly set to 0 instead of 1 (see <https://developer.mozilla.org/en-US/docs/Web/CSS/counter-reset>). To reset a `page` CSS counter to 1, the following declaration must be used: `counter-reset: page 1` (#202).
+
+- Numbered example lists (<https://pandoc.org/MANUAL.html#numbered-example-lists>) are correctly numbered (thanks, @atusy, #122 and #202).
+
+- Periods are now supported in titles (thanks, @yves-amevoin and @martinschmelzer, #84, #185 and #202).
+
+- Parts titles in the table of contents no longer crash `chrome_print()`.
+
+- `chrome_print()` is now compatible with the stream transfer mode which can be used to generate large PDF files (#205).
+
+- `chrome_print()` no longer ignores runtime exceptions in Chrome. An R warning is now raised when Chrome encounters a runtime exception (#203).
+
+## MINOR CHANGES
+
+- The `fig_caption` argument is no longer hard-coded to `FALSE` in `html_resume()` (thanks, @nplatonov, #208).
+
 # CHANGES IN pagedown VERSION 0.13
 
 ## NEW FEATURES
