@@ -1,8 +1,8 @@
 #' Print a web page to PDF or capture a screenshot using the headless Chrome
 #'
 #' Print an HTML page to PDF or capture a PNG/JPEG screenshot through the Chrome
-#' DevTools Protocol. Google Chrome (or Chromium on Linux) must be installed
-#' prior to using this function.
+#' DevTools Protocol. Google Chrome or Microsoft Edge (or Chromium on Linux)
+#' must be installed prior to using this function.
 #' @param input A URL or local file path to an HTML page, or a path to a local
 #'   file that can be rendered to HTML via \code{rmarkdown::\link{render}()}
 #'   (e.g., an R Markdown document or an R script). If the \code{input} is to be
@@ -21,18 +21,19 @@
 #'   printing (in certain cases, the page may not be immediately ready for
 #'   printing, especially there are JavaScript applications on the page, so you
 #'   may need to wait for a longer time).
-#' @param browser Path to Google Chrome or Chromium. This function will try to
-#'   find it automatically via \code{\link{find_chrome}()} if the path is not
-#'   explicitly provided and the environment variable \code{PAGEDOWN_CHROME} is
-#'   not set.
+#' @param browser Path to Google Chrome, Microsoft Edge or Chromium. This
+#'   function will try to find it automatically via \code{\link{find_chrome}()}
+#'   if the path is not explicitly provided and the environment variable
+#'   \code{PAGEDOWN_CHROME} is not set.
 #' @param format The output format.
 #' @param options A list of page options. See
 #'   \code{https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF}
 #'    for the full list of options for PDF output, and
 #'   \code{https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot}
 #'    for options for screenshots. Note that for PDF output, we have changed the
-#'   defaults of \code{printBackground} (\code{TRUE}) and
-#'   \code{preferCSSPageSize} (\code{TRUE}) in this function.
+#'   defaults of \code{printBackground} (\code{TRUE}),
+#'   \code{preferCSSPageSize} (\code{TRUE}) and when available
+#'   \code{transferMode} (\code{ReturnAsStream}) in this function.
 #' @param selector A CSS selector used when capturing a screenshot.
 #' @param box_model The CSS box model used when capturing a screenshot.
 #' @param scale The scale factor used for screenshot.
@@ -72,6 +73,8 @@ chrome_print = function(
     !missing(encoding) && length(match.call()) == 3
   if (is_rstudio_knit) verbose = 1
 
+  format = match.arg(format)
+
   if (missing(browser) && is.na(browser <- Sys.getenv('PAGEDOWN_CHROME', NA))) {
     browser = find_chrome()
   } else {
@@ -104,8 +107,14 @@ chrome_print = function(
   }
   on.exit(kill_chrome(), add = TRUE)
 
-  if (!is_remote_protocol_ok(debug_port, verbose = verbose))
+  remote_protocol_ok = is_remote_protocol_ok(debug_port, verbose = verbose)
+  stream_pdf_available = isTRUE(xfun::attr(remote_protocol_ok, 'stream_pdf_available'))
+
+  if (!remote_protocol_ok)
     stop('A more recent version of Chrome is required. ')
+
+  if (format == 'pdf' && stream_pdf_available)
+    options = merge_list(list(transferMode = 'ReturnAsStream'), as.list(options))
 
   # If !async, use a private event loop to drive the websocket. This is
   # necessary to separate later callbacks relevant to chrome_print, from any
@@ -156,7 +165,6 @@ chrome_print = function(
       url = svr$url
     } else url = input  # the input is not a local file; assume it is just a URL
 
-    format = match.arg(format)
     # remove hash/query parameters in url
     if (missing(output) && !file.exists(input))
       output = xfun::with_ext(basename(gsub('[#?].*', '', url)), format)
@@ -272,29 +280,31 @@ add_outline = function(input, toc_infos, verbose) {
   invisible(input)
 }
 
-#' Find Google Chrome or Chromium in the system
+#' Find Google Chrome, Microsoft Edge or Chromium in the system
 #'
-#' On Windows, this function tries to find Chrome from the registry. On macOS,
-#' it returns a hard-coded path of Chrome under \file{/Applications}. On Linux,
-#' it searches for \command{chromium-browser} and \command{google-chrome} from
-#' the system's \var{PATH} variable.
+#' On Windows, this function tries to find Chrome or Edge from the registry. On
+#' macOS, it returns a hard-coded path of Chrome under \file{/Applications}. On
+#' Linux, it searches for \command{chromium-browser} and \command{google-chrome}
+#' from the system's \var{PATH} variable.
 #' @return A character string.
 #' @export
 find_chrome = function() {
   switch(
     .Platform$OS.type,
     windows = {
-      res = tryCatch({
-        unlist(utils::readRegistry('ChromeHTML\\shell\\open\\command', 'HCR'))
-      }, error = function(e) '')
-      res = unlist(strsplit(res, '"'))
-      res = head(res[file.exists(res)], 1)
-      if (length(res) != 1) stop(
-        'Cannot find Google Chrome automatically from the Windows Registry Hive. ',
-        "Please pass the full path of chrome.exe to the 'browser' argument ",
+      res = unlist(lapply(c('ChromeHTML', 'MSEdgeHTM'), function(x) {
+        res = tryCatch({
+          unlist(utils::readRegistry(sprintf('%s\\shell\\open\\command', x), 'HCR'))
+        }, error = function(e) '')
+        res = unlist(strsplit(res, '"'))
+        res = head(res[file.exists(res)], 1)
+      }))
+      if (length(res) < 1) stop(
+        'Cannot find Google Chrome or Edge automatically from the Windows Registry Hive. ',
+        "Please pass the full path of chrome.exe or msedge.exe to the 'browser' argument ",
         "or to the environment variable 'PAGEDOWN_CHROME'."
       )
-      res
+      res[1]
     },
     unix = if (xfun::is_macos()) {
       '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
@@ -381,9 +391,19 @@ is_remote_protocol_ok = function(debug_port,
     )
   })
 
-  all(mapply(function(x, table) all(x %in% table), required_commands, remote_commands),
+  if (!all(mapply(function(x, table) all(x %in% table), required_commands, remote_commands),
       mapply(function(x, table) all(x %in% table), required_events, remote_events)
+  ))
+    return(FALSE)
+
+  stream_pdf_available = 'transferMode' %in% sapply(
+    remote_protocol[['domains']][remote_domains == 'Page'][[1]][['commands']][remote_commands[['Page']] == 'printToPDF'][[1]][['parameters']],
+    `[[`, 'name'
   )
+  res = TRUE
+  attr(res, 'stream_pdf_available') = stream_pdf_available
+
+  res
 }
 
 get_entrypoint = function(debug_port, verbose) {
@@ -555,7 +575,7 @@ print_page = function(
           resolve(output)
           token$done = TRUE
         } else {
-          if (verbose >= 1) message('Reading PDF from a stream')
+          if (verbose >= 1) message('Receiving PDF from a stream')
           # open a connection
           con <<- file(output, 'wb')
           # read the first chunk of the stream
@@ -569,7 +589,7 @@ print_page = function(
         # Command #17 received
         # if there is another chunk to read -> callback: IO.read
         # if EOF -> callback: command #18 IO.close
-        if (verbose >= 1) message('Stream chunk received')
+        if (verbose >= 1) message('    stream chunk received')
         if (isTRUE(msg$result$base64Encoded)) {
           writeBin(jsonlite::base64_dec(msg$result$data), con)
         } else {
@@ -578,7 +598,7 @@ print_page = function(
 
         if (isTRUE(msg$result$eof)) {
           if (verbose >= 1) message(
-            'No more stream chunk to read: closing Chrome stream'
+            'No more stream chunk to read\n    closing stream'
           )
           close(con)
           ws$send(to_json(list(
@@ -620,7 +640,7 @@ print_page = function(
       }
       if (method == 'Runtime.exceptionThrown') {
         warning(
-          'A runtime exception has occured in Chrome\n',
+          'A runtime exception has occured while executing JavaScript\n',
           '  Runtime exception message:\n    ',
           msg$params$exceptionDetails$exception$description,
           call. = FALSE, immediate. = TRUE

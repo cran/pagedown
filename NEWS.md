@@ -1,4 +1,28 @@
+# CHANGES IN pagedown VERSION 0.15
+
+## NEW FEATURES
+
+- `find_chrome()` now searches for Microsoft Edge on Windows. That allows `chrome_print()` to work seamlessly with Microsoft Edge (thanks, @cderv, #160 and #225).    
+
+## MAJOR CHANGES
+
+- In `chrome_print()`, when printing a document to PDF, the default transfer mode between Chrome and R now uses a stream when this option is available in Chrome. This change ensures that PDF files of any size can be generated (#206 and #224).
+
+## MINOR CHANGES
+
+- Multiple `knitr::kables()` are now vertically aligned by default in `html_paged()`, `thesis_paged()` and `jss_paged()` output formats (thanks, @cderv and @andrew-fuller, #214).
+
+## BUG FIXES
+
+- Fixed a bug introduced in `html_paged()` by **pagedown** 0.14, the content of each link was lost if it was not textual (thanks, @mcanouil, #226).
+
+- Fixed figure and table numbering format in `jss_paged()` (thanks, @gglee4ai, #184).
+
 # CHANGES IN pagedown VERSION 0.14
+
+## NEW FEATURES
+
+- In `html_paged()`, added two new options `lot-unlisted` and `lof-unlisted`. If `lot-unlisted` (resp. `lof-unlisted`) is set to `TRUE` in the YAML options, the list of tables (resp. figures) will not be included in a table of contents (thanks, @beatrizmilz, #221).    
 
 ## MAJOR CHANGES
 
@@ -10,9 +34,7 @@
 
 - In order to be compatible with the **flextable** package, `pagedown::html_paged()` sets the value of the `ft.shadow` chunk option to `FALSE` by default (thanks, @tvroylandt and @davidgohel, #216).
 
-## NEW FEATURES
-
-- In `html_paged()`, added two new options `lot-unlisted` and `lof-unlisted`. If `lot-unlisted` (resp. `lof-unlisted`) is set to `TRUE` in the YAML options, the list of tables (resp. figures) will not be included in a table of contents (thanks, @beatrizmilz, #221).    
+- The `fig_caption` argument is no longer hard-coded to `FALSE` in `html_resume()` (thanks, @nplatonov, #208).
 
 ## BUG FIXES
 
@@ -29,10 +51,6 @@
 - `chrome_print()` is now compatible with the stream transfer mode which can be used to generate large PDF files (#205).
 
 - `chrome_print()` no longer ignores runtime exceptions in Chrome. An R warning is now raised when Chrome encounters a runtime exception (#203).
-
-## MINOR CHANGES
-
-- The `fig_caption` argument is no longer hard-coded to `FALSE` in `html_resume()` (thanks, @nplatonov, #208).
 
 # CHANGES IN pagedown VERSION 0.13
 
