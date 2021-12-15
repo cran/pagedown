@@ -16,11 +16,11 @@
 #'
 #' @param ... Arguments passed to
 #'   \code{bookdown::\link[bookdown]{html_document2}}.
-#' @param css A character vector of CSS file paths. If a path does not contain
-#'   the \file{.css} extension, it is assumed to be a built-in CSS file. For
-#'   example, \code{default-fonts} means the file
-#'   \code{pagedown:::pkg_resource('css', 'default-fonts.css')}. To see all
-#'   built-in CSS files, run \code{pagedown:::list_css()}.
+#' @param css A character vector of CSS and Sass file paths. If a path
+#'   does not contain the \file{.css}, \file{.sass}, or \file{.scss} extension,
+#'   it is assumed to be a built-in CSS file. For example, \code{default-fonts}
+#'   means the file\code{pagedown:::pkg_resource('css', 'default-fonts.css')}.
+#'   To see all built-in CSS files, run \code{pagedown:::list_css()}.
 #' @param theme The Bootstrap theme. By default, Bootstrap is not used.
 #' @param template The path to the Pandoc template to convert Markdown to HTML.
 #' @param csl The path of the Citation Style Language (CSL) file used to format
@@ -51,14 +51,15 @@ html_paged = function(
 
 #' Create a letter in HTML
 #'
-#' This output format is similar to \code{html_paged}. The only difference is in
-#' the default stylesheets. See \url{https://pagedown.rbind.io/html-letter/} for
-#' an example.
-#' @param ...,css Arguments passed to \code{\link{html_paged}()}.
+#' This output format is similar to \code{html_paged}. The only differences are
+#' in the default stylesheets and the default value of the \code{fig_caption}
+#' parameter which is set to \code{FALSE}. See
+#' \url{https://pagedown.rbind.io/html-letter/} for an example.
+#' @param ...,css,fig_caption Arguments passed to \code{\link{html_paged}()}.
 #' @return An R Markdown output format.
 #' @export
-html_letter = function(..., css = c('default', 'letter')) {
-  html_paged(..., css = css, fig_caption = FALSE)
+html_letter = function(..., css = c('default', 'letter'), fig_caption = FALSE) {
+  html_paged(..., css = css, fig_caption = fig_caption)
 }
 
 #' Create a book for Chapman & Hall/CRC
@@ -147,7 +148,7 @@ html_format = function(
     }
   }
 
-  css2 = grep('[.]css$', css, value = TRUE, invert = TRUE)
+  css2 = grep('[.](?:sa|sc|c)ss$', css, value = TRUE, invert = TRUE)
   css  = setdiff(css, css2)
   check_css(css2)
 
