@@ -1,3 +1,7 @@
+# CHANGES IN pagedown VERSION 0.19
+
+- Set `overflow-x: clip` in `default.css` to fix an issue with paged.js rendering in recent browser (thanks, @jimjam-slam, #292, pagedjs/pagedjs#84).
+
 # CHANGES IN pagedown VERSION 0.18
 
 - Figure inserted using markdown syntax and having a caption with `(#fig:lab)` are now correctly listed in the LOF (thanks, @adamvi, #283).
@@ -58,7 +62,7 @@
 
 ## MAJOR CHANGES
 
-- Paged.js is upgraded from version 0.1.32 to 0.1.43. This update speeds up the rendering time and fixes several bugs (see also <https://pagedjs.org/post/weekly/>, <https://pagedjs.org/post/pagedjs-0-1-40/> and <https://pagedjs.org/post/pagedjs-0-1-42/>) (#202).
+- Paged.js is upgraded from version 0.1.32 to 0.1.43. This update speeds up the rendering time and fixes several bugs (see also <https://pagedjs.org/posts/pagedjs-0.1.40/> and <https://pagedjs.org/posts/welcome-pagedjs-0.1.42/>) (#202).
 
 ## MINOR CHANGES
 

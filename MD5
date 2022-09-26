@@ -1,9 +1,9 @@
-582483470c02a1c5780fab5661321100 *DESCRIPTION
-26bdca12529d1428d44cbeca8b5f8c68 *LICENSE
+9cbce2d3e769a6caa9b11e0aee7f0c34 *DESCRIPTION
+efe2c611cf2408e217f1d6c0b473f8a9 *LICENSE
 99cbb6bdab5aab3c56307ea08b9c665e *NAMESPACE
-1e252a11b9dfe6ea7318a0782b91bcab *NEWS.md
+6134daade68ff518c60d5aa44b930ca7 *NEWS.md
 ccc40636a131891ddd8b77466152fcba *R/card.R
-b135d431ba7fb4c772acd9d23fd939f0 *R/chrome.R
+94bc19e8cab81ee01cc3ebd792cd8a0b *R/chrome.R
 f0093aad1a4906b4bf5df1a04449fef5 *R/paged.R
 2a61de6b3b2fdf02fa0be571c5251000 *R/poster.R
 1f90cc90fd0af1cda9ef2b4acff24619 *R/resume.R
@@ -14,7 +14,7 @@ bbca7d56b49e18e2c5c23fd7f53c73bc *inst/resources/css/crc-page.css
 253f1aacb9dc1ceee5759c86e7e2c059 *inst/resources/css/crc.css
 9d90380295f48f49b20e283f672cc1df *inst/resources/css/default-fonts.css
 2331a3ad727c7ad2427ef5e81a07fdd7 *inst/resources/css/default-page.css
-c0293048f3dc8451a76b1c6578677ec7 *inst/resources/css/default.css
+ff82de2bfdc7b3b71613c76dbfc41d53 *inst/resources/css/default.css
 a40719194d15ec7f4aaa04e0767e13b1 *inst/resources/css/jss-fonts.css
 a146594183dbaa186dd784ceca543c3c *inst/resources/css/jss-page.css
 c09d249742c0082e7635fe5323c787aa *inst/resources/css/jss.css
@@ -57,7 +57,7 @@ c57d82f5338b74584b95e7654ba69dcd *inst/rmarkdown/templates/poster-relaxed/templa
 9f4321d87e8b9d610aeb94fe55d22290 *inst/rmarkdown/templates/thesis-paged/template.yaml
 0f8bf6ec230a3dadc85f5a58ecc192c5 *man/book_crc.Rd
 00d60e3b18b623c2e6c0492f415e528a *man/business_card.Rd
-ade812ad8962e66abe027fd5394c975f *man/chrome_print.Rd
+16c1b1c4fd66a27baa92c9873bf4c124 *man/chrome_print.Rd
 97c7c09de7d92c5986f76c511b5e7785 *man/find_chrome.Rd
 97e8083c7804f2bc328dca7815f2ac16 *man/html_letter.Rd
 dd5b53ad1514b727f22d80110a617f23 *man/html_paged.Rd
