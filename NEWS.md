@@ -1,6 +1,12 @@
+# CHANGES IN pagedown VERSION 0.20
+
+- This package requires R >= 3.5.0 now.
+
 # CHANGES IN pagedown VERSION 0.19
 
 - Set `overflow-x: clip` in `default.css` to fix an issue with paged.js rendering in recent browser (thanks, @jimjam-slam, #292, pagedjs/pagedjs#84).
+
+- `chrome_print()` now attempts to remove the output file before printing to it and throws a clear error if it cannot be removed, as this is potential sign of a locked file, e.g a pdf opened in a PDF reader on Windows (thanks, @aito123, #124, #297).
 
 # CHANGES IN pagedown VERSION 0.18
 
@@ -62,7 +68,7 @@
 
 ## MAJOR CHANGES
 
-- Paged.js is upgraded from version 0.1.32 to 0.1.43. This update speeds up the rendering time and fixes several bugs (see also <https://pagedjs.org/posts/pagedjs-0.1.40/> and <https://pagedjs.org/posts/welcome-pagedjs-0.1.42/>) (#202).
+- Paged.js is upgraded from version 0.1.32 to 0.1.43. This update speeds up the rendering time and fixes several bugs (#202).
 
 ## MINOR CHANGES
 
