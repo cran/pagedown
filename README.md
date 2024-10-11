@@ -1,9 +1,9 @@
-# pagedown
+# pagedown <img src="man/figures/logo.png" align="right" height="138" />
 
-[![Build status](https://github.com/rstudio/pagedown/actions/workflows/R-CMD-check.yaml/badge.svg?branch=main)](https://github.com/rstudio/pagedown/actions/workflows/R-CMD-check.yaml?query=branch%3Amain)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/rstudio/pagedown/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rstudio/pagedown/actions/workflows/R-CMD-check.yaml)
 [![Downloads from the RStudio CRAN mirror](https://cranlogs.r-pkg.org/badges/pagedown)](https://cran.r-project.org/package=pagedown)
-
-<a href="https://github.com/rstudio/pagedown"><img src="https://raw.githubusercontent.com/rstudio/hex-stickers/master/SVG/pagedown.svg" alt="pagedown logo" align="right" height="138.5"/></a>
+<!-- badges: end -->
 
 Paginate the HTML Output of R Markdown with CSS for Print. You only need a modern web browser (e.g., Google Chrome or Microsoft Edge) to generate PDF. No need to install LaTeX to get beautiful PDFs.
 
@@ -12,7 +12,8 @@ This R package stands on the shoulders of two giants to support typesetting with
 You may install this package from Github:
 
 ```r
-remotes::install_github('rstudio/pagedown')
+# install.packages("pak")
+pak::pak('rstudio/pagedown')
 ```
 
 This package requires a recent version of Pandoc (>= 2.2.3). If you use RStudio, you are recommended to install the [latest version](https://posit.co/download/rstudio-desktop/) (>= 1.2.1335), which has bundled Pandoc 2.x, otherwise you need to install Pandoc separately.
