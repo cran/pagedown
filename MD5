@@ -1,7 +1,7 @@
-637497a7552ab83f0fecc669ad98d961 *DESCRIPTION
+e941d2ce380dc09663d97642665980e2 *DESCRIPTION
 8464ea041df6d22f5593a104c3df510d *LICENSE
 99cbb6bdab5aab3c56307ea08b9c665e *NAMESPACE
-594b1208ee3f94fab84b785a30efdb9e *NEWS.md
+dd96b487e6c24c15bed9801715cba642 *NEWS.md
 ccc40636a131891ddd8b77466152fcba *R/card.R
 07f938e1633f936868ea1ed9200b3f64 *R/chrome.R
 3fe68ca1f2afac5511b8b570a9253155 *R/paged.R
@@ -33,7 +33,7 @@ f0181998e008424cd2614119403e1e68 *inst/resources/html/resume.html
 942238ae92506c2ca53e3dbb5e89b5d6 *inst/resources/html/thesis.html
 77550f8f310e1ce62477c8cd67f7d854 *inst/resources/js/chrome_print.js
 ec278df42631039747453ec576337ea0 *inst/resources/js/config.js
-77abbc27c8021802515779e94bbf527d *inst/resources/js/hooks.js
+2dcb4ba012522575df23260109495d64 *inst/resources/js/hooks.js
 f5af8d2fa905e7b1a0b7b12beb92e622 *inst/resources/js/paged-latest.js
 2ea9287e7b5ed3e6bf8abf174f31cfb6 *inst/resources/js/paged.js
 6aec4f50fadd6ba63b76f60a1c127184 *inst/resources/lua/footnotes.lua
@@ -69,7 +69,7 @@ dd5b53ad1514b727f22d80110a617f23 *man/html_paged.Rd
 5e643c62a3e2bcee117467d0f04fb76e *man/poster_relaxed.Rd
 d7306c62d04f9ad04e965a788513343f *man/thesis_paged.Rd
 b028aa6927b64ff57fbf60422ae6fb59 *tests/test-ci.R
-16f516aeca7c1594cbb586c169728c5f *tests/test-ci/test-chrome.R
+9ddac60d0a4f2e03a891df901a1afa3d *tests/test-ci/test-chrome.R
 961f114b56f0330eece34d86eb2277b5 *tests/test-ci/test-chrome.Rmd
 0aaaf085258880b102a92b04a7ecd723 *tests/test-ci/test-features.R
 60b77a980ca30cecef49e9fe88fd2436 *tests/test-ci/test-formats.R
